@@ -17,6 +17,13 @@
   "author": "Vinh Nhan vnhan1@myseneca.ca",
   "license": "UNLICENSED",
   "devDependencies": {
-    "parcel": "latest"
+    "buffer": "^6.0.3",
+    "parcel": "latest",
+    "process": "^0.11.10",
+    "punycode": "^1.4.1",
+    "querystring-es3": "^0.2.1"
+  },
+  "dependencies": {
+    "aws-amplify": "^5.3.11"
   }
 }
