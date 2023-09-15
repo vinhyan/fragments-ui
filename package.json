@@ -1,0 +1,22 @@
+{
+  "name": "fragments-ui",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Fragments UI testing web app",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinhyan/fragments-ui.git"
+  },
+  "author": "Vinh Nhan vnhan1@myseneca.ca",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "parcel": "latest"
+  }
+}
