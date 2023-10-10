@@ -19,8 +19,8 @@ export async function getUserFragments(user) {
       throw new Error(`${res.status} ${res.statusText}`);
     }
     const data = await res.json();
-    return data;
     console.log('Got user fragments data', { data });
+    return data;
   } catch (err) {
     console.error('Unable to call GET /v1/fragment', { err });
   }
@@ -33,14 +33,14 @@ export async function submitFragment(user, fragment) {
     const res = await fetch(`${apiUrl}/v1/fragments`, {
       method: 'POST',
       headers: user.authorizationHeaders('text/plain'),
-      body: JSON.stringify(fragment),
-      payload: JSON.stringify(fragment),
+      // body: JSON.stringify(fragment),
+      body: Buffer.from(fragment),
     });
     if (!res.ok) {
       throw new Error(`${res.status} ${res.statusText}`);
     }
     const data = await res.json();
-    console.log('Submitted fragments data', { data });
+    console.log('Submitted fragment data', { data });
   } catch (err) {
     console.error('Unable to call POST /v1/fragment', { err });
   }

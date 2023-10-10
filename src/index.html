@@ -15,12 +15,15 @@
     </section>
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
-      <form >
+      <!-- <form id="data-submit">
         <label>Submit your fragment data (text):</label>
         <input id="data" type="text" />
-        <button id="data-submit" type="submit">Submit</button>
-      </form>
-      <div id="data-list">
+        <button type="submit">Submit</button>
+      </form> -->
+      <label>Submit your fragment data (text):</label>
+      <input id="data" type="text" />
+      <button id="data-submit">Submit</button>
+      <div id="data-list" hidden>
         <h3>Your fragments:</h3>
         <ol id="fragment-id-list"></ol>
       </div>

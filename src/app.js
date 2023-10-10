@@ -32,9 +32,7 @@ async function init() {
   }
 
   // Do an authenticated request to the fragments API server and log the result
-  const res = await getUserFragments(user);
-
-  console.log(res);
+  await getUserFragments(user);
 
   // Log the user info for debugging purposes
   console.log({ user });
@@ -45,18 +43,10 @@ async function init() {
   // Show the user's username
   userSection.querySelector('.username').innerText = user.username;
 
-  userSection.querySelector('#fragment-id-list').innerHTML = `${res.fragments
-    .map(
-      (fragment) =>
-        `<li><button id="get-fragment-data-btn" type="submit">${fragment}</button></li>`
-    )
-    .join('')}`;
-
   // Disable the Login button
   loginBtn.disabled = true;
 
   dataSubmit.onclick = (e) => {
-    // e.preventDefault();
     console.log('Submitting data...');
     console.log(data.value);
     submitFragment(user, data.value);
