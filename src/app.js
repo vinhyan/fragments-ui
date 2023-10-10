@@ -1,19 +1,23 @@
 import { Auth, getUser } from './auth';
-import { getUserFragments } from './api';
+import { getUserFragments, submitFragment } from './api';
 
 async function init() {
   // Get our UI elements
   const userSection = document.querySelector('#user');
   const loginBtn = document.querySelector('#login');
   const logoutBtn = document.querySelector('#logout');
+  const dataSubmit = document.querySelector('#data-submit');
+  const data = document.querySelector('#data');
 
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
+    console.log('Logging in...');
     // Sign-in via the Amazon Cognito Hosted UI (requires redirects), see:
     // https://docs.amplify.aws/lib/auth/advanced/q/platform/js/#identity-pool-federation
     Auth.federatedSignIn(); // to get AWS creds directly from Cognito Federated Identities, should only call this when using OAuth flows or Hosted UI
   };
   logoutBtn.onclick = () => {
+    console.log('Logging out...');
     // Sign-out of the Amazon Cognito Hosted UI (requires redirects), see:
     // https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js/#sign-out
     Auth.signOut();
@@ -28,7 +32,9 @@ async function init() {
   }
 
   // Do an authenticated request to the fragments API server and log the result
-  getUserFragments(user);
+  const res = await getUserFragments(user);
+
+  console.log(res);
 
   // Log the user info for debugging purposes
   console.log({ user });
@@ -39,8 +45,22 @@ async function init() {
   // Show the user's username
   userSection.querySelector('.username').innerText = user.username;
 
+  userSection.querySelector('#fragment-id-list').innerHTML = `${res.fragments
+    .map(
+      (fragment) =>
+        `<li><button id="get-fragment-data-btn" type="submit">${fragment}</button></li>`
+    )
+    .join('')}`;
+
   // Disable the Login button
   loginBtn.disabled = true;
+
+  dataSubmit.onclick = (e) => {
+    // e.preventDefault();
+    console.log('Submitting data...');
+    console.log(data.value);
+    submitFragment(user, data.value);
+  };
 }
 
 // Wait for the DOM to be ready, then start the app
