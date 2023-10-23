@@ -7,15 +7,18 @@ Amplify.configure({
     region: 'us-east-1',
 
     // Amazon Cognito User Pool ID
-    userPoolId: process.env.AWS_COGNITO_POOL_ID,
+    // userPoolId: process.env.AWS_COGNITO_POOL_ID,
+    userPoolId: 'us-east-1_dYRQUr8Ia',
 
     // Amazon Cognito App Client ID (26-char alphanumeric string)
-    userPoolWebClientId: process.env.AWS_COGNITO_CLIENT_ID,
+    // userPoolWebClientId: process.env.AWS_COGNITO_CLIENT_ID,
+    userPoolWebClientId: '5seuefu7ndh80t7k5pm2n44qaj',
 
     // Hosted UI configuration
     oauth: {
       // Amazon Hosted UI Domain
-      domain: process.env.AWS_COGNITO_HOSTED_UI_DOMAIN,
+      // domain: process.env.AWS_COGNITO_HOSTED_UI_DOMAIN,
+      domain: 'vnhan-fragments.auth.us-east-1.amazoncognito.com',
 
       // These scopes must match what you set in the User Pool for this App Client
       // The default based on what we did above is: email, phone, openid. To see
@@ -26,8 +29,10 @@ Amplify.configure({
 
       // NOTE: these must match what you have specified in the Hosted UI
       // app settings for Callback and Redirect URLs (e.g., no trailing slash).
-      redirectSignIn: process.env.OAUTH_SIGN_IN_REDIRECT_URL,
-      redirectSignOut: process.env.OAUTH_SIGN_OUT_REDIRECT_URL,
+      // redirectSignIn: process.env.OAUTH_SIGN_IN_REDIRECT_URL,
+      redirectSignIn: 'http://localhost:1234',
+      // redirectSignOut: process.env.OAUTH_SIGN_OUT_REDIRECT_URL,
+      redirectSignOut: 'http://localhost:1234',
 
       // We're using the Access Code Grant flow (i.e., `code`)
       responseType: 'code',
