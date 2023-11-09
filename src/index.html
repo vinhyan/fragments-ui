@@ -3,30 +3,122 @@
   <head>
     <meta charset="utf-8" />
     <title>Fragments UI</title>
-    <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/bamboo.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <h1>Fragments UI</h1>
-    <section>
-      <nav>
-        <button id="login">Login</button> <button id="logout">Logout</button>
-      </nav>
-    </section>
-    <section hidden id="user">
-      <h2>Hello <span class="username"></span>!</h2>
-      <!-- <form id="data-submit">
-        <label>Submit your fragment data (text):</label>
-        <input id="data" type="text" />
-        <button type="submit">Submit</button>
-      </form> -->
-      <label>Submit your fragment data (text):</label>
-      <input id="data" type="text" />
-      <button id="data-submit">Submit</button>
-      <div id="data-list" hidden>
-        <h3>Your fragments:</h3>
-        <ol id="fragment-id-list"></ol>
+    <div class="container is-max-desktop">
+      <section class="section is-small">
+        <nav class="navbar">
+          <h1 class="title is-1 has-text-grey">Fragments UI</h1>
+          <div class="navbar-end">
+            <div>
+              <button class="button is-link" id="login">Login</button>
+              <button class="button is-link is-light" id="logout">
+                Logout
+              </button>
+            </div>
+          </div>
+        </nav>
+      </section>
+      <section class="section is-small" hidden id="user">
+        <h2 class="block">
+          Hello <span class="username has-text-info"></span>!
+        </h2>
+        <div class="card is-fluid">
+          <!-- <header class="card-header">
+            <p class="card-header-title">Submit Fragment</p>
+          </header> -->
+          <div class="card-header">
+            <p class="card-header-title has-text-primary">
+              Fragment Submission
+            </p>
+          </div>
+
+          <div class="card-content">
+            <div class="columns is-vcentered is-desktop">
+              <div class="column">
+                <label class="label">Data:</label>
+                <input class="input is-rounded" id="data" type="text" />
+              </div>
+              <div class="column is-two-fifths">
+                <label class="label" for="data-type">Type:</label>
+                <div class="select is-rounded is-fullwidth">
+                  <select name="data-type" id="data-type">
+                    <option value="text/plain">text/plain</option>
+                    <option value="text/markdown">text/markdown</option>
+                    <option value="text/html">text/html</option>
+                    <option value="application/json">application/json</option>
+                    <option value="image/png">image/png</option>
+                    <option value="image/jpeg">image/jpeg</option>
+                    <option value="image/webp">image/webp</option>
+                    <option value="image/gif">image/gif</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="container has-text-right">
+              <button class="button is-primary" id="data-submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title has-text-info">Get Fragments</p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <label class="checkbox" for="expand">
+                <input type="checkbox" name="expand" id="expand" />
+                Expanded
+              </label>
+            </div>
+            <hr />
+            <div class="content show-fragment-list" hidden>
+              <div id="data-list">
+                <h3>Your fragments:</h3>
+                <table
+                  class="table is-striped is-hoverable"
+                  id="fragment-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>Fragment</th>
+                      <th>Extension Option</th>
+                      <th>Get Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="container has-text-right">
+              <button class="button is-info" id="get-data">Retrieve</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="modal-view-detail" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box has-text-centered">
+          <h4 class="title is-4 has-text-info">Fragment Content</h4>
+          <hr />
+          <div class="content">
+            <p id="fragment-data-display"></p>
+            <!-- Your content -->
+          </div>
+        </div>
       </div>
-    </section>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
   </body>
 </html>
