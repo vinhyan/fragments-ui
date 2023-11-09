@@ -24,92 +24,116 @@
             </div>
           </div>
         </nav>
-      </section>
-      <section class="section is-small" hidden id="user">
-        <h2 class="block">
-          Hello <span class="username has-text-info"></span>!
+        <h2 class="container has-text-right" id="user-greeting" hidden>
+          Hello <span class="has-text-info" id="username"></span>!
         </h2>
-        <div class="card is-fluid">
-          <!-- <header class="card-header">
+      </section>
+      <div hidden id="user">
+        <section class="section is-small">
+          <div class="card is-fluid">
+            <!-- <header class="card-header">
             <p class="card-header-title">Submit Fragment</p>
           </header> -->
-          <div class="card-header">
-            <p class="card-header-title has-text-primary">
-              Fragment Submission
-            </p>
-          </div>
+            <div class="card-header">
+              <p class="card-header-title has-text-primary">
+                Fragment Submission
+              </p>
+            </div>
 
-          <div class="card-content">
-            <div class="columns is-vcentered is-desktop">
-              <div class="column">
-                <label class="label">Data:</label>
-                <input class="input is-rounded" id="data" type="text" />
-              </div>
-              <div class="column is-two-fifths">
-                <label class="label" for="data-type">Type:</label>
-                <div class="select is-rounded is-fullwidth">
-                  <select name="data-type" id="data-type">
-                    <option value="text/plain">text/plain</option>
-                    <option value="text/markdown">text/markdown</option>
-                    <option value="text/html">text/html</option>
-                    <option value="application/json">application/json</option>
-                    <option value="image/png">image/png</option>
-                    <option value="image/jpeg">image/jpeg</option>
-                    <option value="image/webp">image/webp</option>
-                    <option value="image/gif">image/gif</option>
-                  </select>
+            <div class="card-content">
+              <div class="columns is-vcentered is-desktop">
+                <div class="column">
+                  <label class="label">Data:</label>
+                  <input class="input is-rounded" id="data" type="text" />
+                </div>
+                <div class="column is-two-fifths">
+                  <label class="label" for="data-type">Type:</label>
+                  <div class="select is-rounded is-fullwidth">
+                    <select name="data-type" id="data-type">
+                      <option value="text/plain">text/plain</option>
+                      <option value="text/markdown">text/markdown</option>
+                      <option value="text/html">text/html</option>
+                      <option value="application/json">application/json</option>
+                      <option value="image/png">image/png</option>
+                      <option value="image/jpeg">image/jpeg</option>
+                      <option value="image/webp">image/webp</option>
+                      <option value="image/gif">image/gif</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="container has-text-right">
-              <button class="button is-primary" id="data-submit">Submit</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title has-text-info">Get Fragments</p>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <label class="checkbox" for="expand">
-                <input type="checkbox" name="expand" id="expand" />
-                Expanded
-              </label>
-            </div>
-            <hr />
-            <div class="content show-fragment-list" hidden>
-              <div id="data-list">
-                <h3>Your fragments:</h3>
-                <table
-                  class="table is-striped is-hoverable"
-                  id="fragment-table"
-                >
-                  <thead>
-                    <tr>
-                      <th>Fragment</th>
-                      <th>Extension Option</th>
-                      <th>Get Detail</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+              <div class="column is-two-fifths">
+                <!-- <div class="notification"> -->
+                <p class="label">Dummy JSON (for testing):</p>
+                <div class="notification p-4">
+                  <div class="container has-text-right mb-2">
+                    <button class="button is-white is-small" id="copy-btn">
+                      Copy
+                    </button>
+                  </div>
+                  <p id="dummy-json">
+                    { "name": "John Doe", "age": 25, "email":
+                    "john.doe@example.com", "address": { "city": "New York",
+                    "state": "NY", "zip": "10001" }, "skills": ["JavaScript",
+                    "React", "Node.js"], "isStudent": false }
+                  </p>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="container has-text-right">
+                <button class="button is-primary" id="data-submit">
+                  Submit
+                </button>
               </div>
             </div>
-            <div class="container has-text-right">
-              <button class="button is-info" id="get-data">Retrieve</button>
+          </div>
+        </section>
+        <section class="section">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title has-text-info">Get Fragments</p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <label class="checkbox" for="expand">
+                  <input type="checkbox" name="expand" id="expand" />
+                  Expanded
+                  <em>(Extension Option only available when selected)</em>
+                </label>
+              </div>
+              <hr />
+              <div class="content show-fragment-list" hidden>
+                <div id="data-list">
+                  <h3>Your fragments:</h3>
+                  <table
+                    class="table is-striped is-hoverable"
+                    id="fragment-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Fragment</th>
+                        <th>Extension Option</th>
+                        <th>More</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="container has-text-right">
+                <button class="button is-info" id="get-data">Retrieve</button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-    <div id="modal-view-detail" class="modal">
+    <!-- View Data Modal -->
+    <div id="modal-view-data" class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="box has-text-centered">
-          <h4 class="title is-4 has-text-info">Fragment Content</h4>
+          <h5 class="title is-5 has-text-info">Fragment Data</h5>
           <hr />
           <div class="content">
             <p id="fragment-data-display"></p>
@@ -117,8 +141,25 @@
           </div>
         </div>
       </div>
-
       <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <!-- View Info Modal -->
+    <div class="modal" id="modal-view-info">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Fragment Detail</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section
+          class="modal-card-body"
+          id="view-info-modal-card-body"
+        ></section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" disabled>Save changes</button>
+          <button class="button">Cancel</button>
+        </footer>
+      </div>
     </div>
   </body>
 </html>

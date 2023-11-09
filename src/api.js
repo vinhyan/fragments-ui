@@ -33,10 +33,10 @@ export async function getUserFragments(user, expand = false) {
   }
 }
 
-// GET BY ID
-export async function getFragmentDetail(user, fragmentId, ext) {
+// GET DATA BY ID
+export async function getFragmentDataById(user, fragmentId, ext) {
   // const fragmentId = e.target.id;
-  console.log('Getting fragment detail...');
+  console.log('Getting fragment data by id...');
   try {
     const res = await fetch(
       `${apiUrl}/v1/fragments/${fragmentId}${ext ? `.${ext}` : ''}`,
@@ -53,7 +53,7 @@ export async function getFragmentDetail(user, fragmentId, ext) {
     if (res.headers.get('Content-Type').includes('application/json')) {
       const data = await res.json();
       console.log('*** data', data);
-      return JSON.stringify(data); 
+      return JSON.stringify(data);
     } else {
       // console.log('res.text()', await res.text());
       return await res.text();
@@ -62,6 +62,31 @@ export async function getFragmentDetail(user, fragmentId, ext) {
     console.error(`Unable to call GET ${apiUrl}/v1/fragments/${fragmentId}`, {
       err,
     });
+  }
+}
+
+// GET FRAGMENT BY ID
+export async function getFragmentById(user, fragmentId) {
+  // const fragmentId = e.target.id;
+  console.log('Getting fragment by id info...');
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments/${fragmentId}/info`, {
+      // Generate headers with the proper Authorization bearer token to pass
+      headers: user.authorizationHeaders(),
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const data = await res.json();
+    console.log('JSON data:', data);
+    return data;
+  } catch (err) {
+    console.error(
+      `Unable to call GET ${apiUrl}/v1/fragments/${fragmentId}/info`,
+      {
+        err,
+      }
+    );
   }
 }
 
