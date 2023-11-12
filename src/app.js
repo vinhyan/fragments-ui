@@ -23,7 +23,7 @@ async function init() {
   const expandCheckbox = document.querySelector('#expand');
   // const fragmentIdList = document.querySelector('#fragment-id-list');
   const showFragmentList = document.querySelector('.show-fragment-list');
-  const getDetailBtn = document.querySelector('#get-detail');
+  // const getDetailBtn = document.querySelector('#get-detail');
   const fragmentTable = document.querySelector('#fragment-table');
   const fragmentTableBody = document.querySelector('#fragment-table tbody');
 
@@ -80,13 +80,20 @@ async function init() {
     }
   };
 
-  dataSubmit.onclick = (e) => {
+  dataSubmit.onclick = async (e) => {
     const selectedDataType = dataTypeSelect.value;
     console.log('Submitting data...');
     // console.log(data.value);
     // console.log('selectedDataType', selectedDataType);
-    submitFragment(user, data.value, selectedDataType);
-    init();
+    const res = await submitFragment(user, data.value, selectedDataType);
+    console.log('>>> res', res);
+    if (!res) {
+      alert(
+        'Error! Your data was not submitted. Please make sure data type is supported'
+      );
+    }
+
+    // init();
   };
 
   getData.onclick = async (e) => {
@@ -108,15 +115,15 @@ async function init() {
       fragments.length > 0
         ? fragments
             .map((fragment) => {
-              let createdDate = new Date(fragment.created);
+              // let createdDate = new Date(fragment.created);
               let fragmentId = expandCheckbox.checked ? fragment.id : fragment;
               return `<tr>
                   <td >
                     <span><span class="has-text-weight-bold">ID:</span> ${fragmentId}</span><br/>
                     ${
                       expandCheckbox.checked
-                        ? `<span><span class="has-text-weight-bold">Created:</span> ${createdDate.toLocaleDateString(
-                            'en-US'
+                        ? `<span><span class="has-text-weight-bold">Created:</span> ${convertDateUS(
+                            fragment.created
                           )}</span><br/>
                       <span><span class="has-text-weight-bold">Type:</span> ${
                         fragment.type
@@ -302,5 +309,5 @@ addEventListener('DOMContentLoaded', init);
 // helper functions
 const convertDateUS = (dateString) => {
   let date = new Date(dateString);
-  return date.toLocaleDateString('en-US');
+  return date.toLocaleString('en-US');
 };

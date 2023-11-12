@@ -107,6 +107,7 @@ export async function submitFragment(user, fragment, dataType) {
     }
     const data = await res.json();
     console.log('Submitted fragment data', { data });
+    return data;
   } catch (err) {
     console.error('Unable to call POST /v1/fragment', { err });
   }
