@@ -8,13 +8,18 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+
     <script type="module" src="./app.js"></script>
   </head>
   <body>
-    <div class="container is-max-desktop">
-      <section class="section is-small">
+    <div class="container">
+      <section class="section">
         <nav class="navbar">
-          <h1 class="title is-1 has-text-grey">Fragments UI</h1>
+          <h1 class="title is-1 has-text-grey">Fragments</h1>
           <div class="navbar-end">
             <div>
               <button class="button is-link" id="login">Login</button>
@@ -31,59 +36,108 @@
       <div hidden id="user">
         <section class="section is-small">
           <div class="card is-fluid">
-            <!-- <header class="card-header">
-            <p class="card-header-title">Submit Fragment</p>
-          </header> -->
-            <div class="card-header">
+            <p class="card-header-title has-text-primary">
+              Fragment Submission
+            </p>
+            <!-- <div class="card-header">
               <p class="card-header-title has-text-primary">
                 Fragment Submission
               </p>
+            </div> -->
+            <div class="tabs is-boxed">
+              <ul>
+                <li class="is-active" data-target="text-submission">
+                  <a>Text</a>
+                </li>
+                <li data-target="file-submission">
+                  <a>File</a>
+                </li>
+              </ul>
             </div>
-
-            <div class="card-content">
-              <div class="columns is-vcentered is-desktop">
-                <div class="column">
-                  <label class="label">Data:</label>
-                  <input class="input is-rounded" id="data" type="text" />
+            <div id="tab-content">
+              <div class="card-content" id="text-submission">
+                <div class="columns is-vcentered is-desktop">
+                  <div class="column">
+                    <label class="label">Data:</label>
+                    <input class="input is-rounded" id="data" type="text" />
+                  </div>
+                  <div class="column is-two-fifths">
+                    <label class="label" for="data-type">Type:</label>
+                    <div class="select is-rounded is-fullwidth">
+                      <select name="data-type" id="data-type">
+                        <option value="text/plain">text/plain</option>
+                        <option value="text/markdown">text/markdown</option>
+                        <option value="text/html">text/html</option>
+                        <option value="application/json">
+                          application/json
+                        </option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
                 <div class="column is-two-fifths">
+                  <p class="label">Dummy JSON (for testing):</p>
+                  <div class="notification p-4">
+                    <div class="container has-text-right mb-2">
+                      <button class="button is-white is-small" id="copy-btn">
+                        Copy
+                      </button>
+                    </div>
+                    <p id="dummy-json">
+                      { "name": "John Doe", "age": 25, "email":
+                      "john.doe@example.com", "address": { "city": "New York",
+                      "state": "NY", "zip": "10001" }, "skills": ["JavaScript",
+                      "React", "Node.js"], "isStudent": false }
+                    </p>
+                  </div>
+                </div>
+                <div class="container has-text-right">
+                  <button class="button is-primary" id="data-submit">
+                    Submit
+                  </button>
+                </div>
+              </div>
+              <div class="card-content is-hidden" id="file-submission">
+                <div class="columns is-vcentered is-desktop">
+                  <div class="column">
+                    <label class="label">File:</label>
+                    <div class="file has-name is-fullwidth">
+                      <label class="file-label">
+                        <input
+                          class="file-input"
+                          type="file"
+                          name="file-upload"
+                          id="user-file-upload"
+                        />
+                        <span class="file-cta">
+                          <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label"> Choose a file… </span>
+                        </span>
+                        <span class="file-name has-text-danger">
+                          No file selected
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- <div class="column is-two-fifths">
                   <label class="label" for="data-type">Type:</label>
                   <div class="select is-rounded is-fullwidth">
-                    <select name="data-type" id="data-type">
-                      <option value="text/plain">text/plain</option>
-                      <option value="text/markdown">text/markdown</option>
-                      <option value="text/html">text/html</option>
-                      <option value="application/json">application/json</option>
+                    <select name="data-type" id="file-data-type">
                       <option value="image/png">image/png</option>
                       <option value="image/jpeg">image/jpeg</option>
                       <option value="image/webp">image/webp</option>
                       <option value="image/gif">image/gif</option>
                     </select>
                   </div>
+                </div> -->
                 </div>
-              </div>
-              <div class="column is-two-fifths">
-                <!-- <div class="notification"> -->
-                <p class="label">Dummy JSON (for testing):</p>
-                <div class="notification p-4">
-                  <div class="container has-text-right mb-2">
-                    <button class="button is-white is-small" id="copy-btn">
-                      Copy
-                    </button>
-                  </div>
-                  <p id="dummy-json">
-                    { "name": "John Doe", "age": 25, "email":
-                    "john.doe@example.com", "address": { "city": "New York",
-                    "state": "NY", "zip": "10001" }, "skills": ["JavaScript",
-                    "React", "Node.js"], "isStudent": false }
-                  </p>
+                <div class="container has-text-right">
+                  <button class="button is-primary" id="file-data-submit">
+                    Submit
+                  </button>
                 </div>
-                <!-- </div> -->
-              </div>
-              <div class="container has-text-right">
-                <button class="button is-primary" id="data-submit">
-                  Submit
-                </button>
               </div>
             </div>
           </div>
@@ -97,8 +151,7 @@
               <div class="content">
                 <label class="checkbox" for="expand">
                   <input type="checkbox" name="expand" id="expand" />
-                  Expanded
-                  <em>(Extension Option only available when selected)</em>
+                  Expanded (more options)
                 </label>
               </div>
               <hr />
@@ -112,7 +165,7 @@
                     <thead>
                       <tr>
                         <th>Fragment</th>
-                        <th>Extension Option</th>
+                        <th>Extension</th>
                         <th>More</th>
                       </tr>
                     </thead>
@@ -138,6 +191,7 @@
           <div class="content">
             <p id="fragment-data-display"></p>
             <!-- Your content -->
+            <img id="fragment-data-image" />
           </div>
         </div>
       </div>
@@ -157,6 +211,83 @@
         ></section>
         <footer class="modal-card-foot">
           <button class="button is-success" disabled>Save changes</button>
+          <button class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>
+    <!-- Edit Modal -->
+    <div class="modal" id="modal-edit-info">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Update</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body" id="view-info-modal-card-body">
+          <div class="columns is-vcentered is-desktop" id="update-text-section">
+            <div class="column">
+              <label class="label">Data:</label>
+              <input class="input is-rounded" id="update-data" type="text" />
+            </div>
+            <div class="column is-two-fifths">
+              <label class="label" for="data-type">Type:</label>
+              <div class="select is-rounded is-fullwidth">
+                <select name="data-type" id="update-data-type">
+                  <option value="text/plain">text/plain</option>
+                  <option value="text/markdown">text/markdown</option>
+                  <option value="text/html">text/html</option>
+                  <option value="application/json">application/json</option>
+                  <option value="image/png">image/png</option>
+                  <option value="image/jpeg">image/jpeg</option>
+                  <option value="image/webp">image/webp</option>
+                  <option value="image/gif">image/gif</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="column" id="update-file-section">
+            <label class="label">File:</label>
+            <div class="file">
+              <label class="file-label">
+                <input
+                  class="file-input"
+                  type="file"
+                  name="file-upload"
+                  id="update-file-upload"
+                />
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label"> Choose a file… </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" id="update-data-submit">
+            Save changes
+          </button>
+          <button class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal" id="modal-delete">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Delete Data</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body" id="view-info-modal-card-body">
+          <p>Delete fragment data?</p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-danger" id="delete-data-submit">
+            Confirm
+          </button>
           <button class="button">Cancel</button>
         </footer>
       </div>
