@@ -29,10 +29,10 @@ Amplify.configure({
 
       // NOTE: these must match what you have specified in the Hosted UI
       // app settings for Callback and Redirect URLs (e.g., no trailing slash).
-      // redirectSignIn: process.env.OAUTH_SIGN_IN_REDIRECT_URL,
-      redirectSignIn: 'http://localhost:1234',
-      // redirectSignOut: process.env.OAUTH_SIGN_OUT_REDIRECT_URL,
-      redirectSignOut: 'http://localhost:1234',
+      redirectSignIn: process.env.OAUTH_SIGN_IN_REDIRECT_URL,
+      // redirectSignIn: 'https://fragments-ui-rho.vercel.app/',
+      redirectSignOut: process.env.OAUTH_SIGN_OUT_REDIRECT_URL,
+      // redirectSignOut: 'https://fragments-ui-rho.vercel.app/',
 
       // We're using the Access Code Grant flow (i.e., `code`)
       responseType: 'code',
