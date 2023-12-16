@@ -1,5 +1,6 @@
 // fragments microservice API, defaults to localhost:8080
-const apiUrl = process.env.API_URL;
+const apiUrl =
+  'http://ec2con-ecsel-fe0e3qpxfmom-1472472943.us-east-1.elb.amazonaws.com:8080';
 
 /**
  * Given an authenticated user, request all fragments for this user from the
